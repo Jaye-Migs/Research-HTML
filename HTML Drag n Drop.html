@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+      <style>
+        .draggable {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #000;
+            display: inline-block;
+            text-align: center;
+        }
+        .droppable {
+            width: 220px;
+            height: 220px;
+            margin: 10px;
+            padding: 10px;
+            border: 2px dashed #000;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML Drag and Drop</h1>
+    <div class="draggable" draggable="true" id="drag1">Drag me</div>
+    <div class="droppable" id="drop1">Drop here</div>
+
+    <script>
+        document.getElementById("drag1").addEventListener("dragstart", function(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        });
+
+        document.getElementById("drop1").addEventListener("dragover", function(event) {
+            event.preventDefault();
+        });
+
+        document.getElementById("drop1").addEventListener("drop", function(event) {
+            event.preventDefault();
+            var data = event.dataTransfer.getData("text");
+            event.target.appendChild(document.getElementById(data));
+        });
+    </script>
+</body>
+</html>
